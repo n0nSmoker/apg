@@ -1,0 +1,12 @@
+version: '3.5'
+services:
+  {{cookiecutter.app_name}}:
+    environment:
+      - PYTHONASYNCIODEBUG=1
+      - DEBUG=1
+    command:
+      - run_dev
+    volumes:
+      - .:/var/www/app
+    stdin_open: true
+    tty: true

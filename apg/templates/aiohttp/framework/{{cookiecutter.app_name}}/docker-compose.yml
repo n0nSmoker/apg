@@ -1,0 +1,30 @@
+version: '3.5'
+x-env-files: &env-files
+  env_file:
+    - .env
+
+services:
+  {{cookiecutter.app_name}}:
+    container_name: {{cookiecutter.app_name}}
+    build: .
+    ports:
+      - "8080:8080"
+{%- if cookiecutter.use_database == 'y' %}
+    depends_on:
+      - {{cookiecutter.app_name}}-db
+{%- endif %}
+    command:
+      - run
+    <<: *env-files
+{% if cookiecutter.use_database == 'y' %}
+  {{cookiecutter.app_name}}-db:
+    container_name: {{cookiecutter.app_name}}-db
+    image: postgres:11.2-alpine
+    volumes:
+      - {{cookiecutter.app_name}}-db:/var/lib/postgresql/data
+    <<: *env-files
+
+volumes:
+  {{cookiecutter.app_name}}-db:
+    driver: local
+{% endif %}

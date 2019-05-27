@@ -1,0 +1,56 @@
+version: '3.4'
+x-env-files: &env-files
+  env_file:
+    - .env
+
+services:
+  {{cookiecutter.app_name}}:
+    container_name: {{cookiecutter.app_name}}
+    restart: always
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - {{cookiecutter.app_name}}-static:/var/www/app/static/upload
+    depends_on:
+      - {{cookiecutter.app_name}}-db
+      - {{cookiecutter.app_name}}-redis
+    command:
+      - run
+    <<: *env-files
+
+  {{cookiecutter.app_name}}-db:
+    container_name: {{cookiecutter.app_name}}-db
+    image: postgres:latest
+    volumes:
+      - {{cookiecutter.app_name}}-db:/var/lib/postgresql/data
+    <<: *env-files
+
+  {{cookiecutter.app_name}}-redis:
+    container_name: {{cookiecutter.app_name}}-redis
+    image: redis:latest
+    volumes:
+      - {{cookiecutter.app_name}}-redis:/data
+    command: ["redis-server", "--appendonly", "yes"]
+
+{% if cookiecutter.use_celery == 'y' %}
+  {{cookiecutter.app_name}}-rabbit:
+    container_name: {{cookiecutter.app_name}}-rabbit
+    image: rabbitmq:latest
+    hostname: {{cookiecutter.app_name}}-rabbit
+    volumes:
+      - {{cookiecutter.app_name}}-rabbit:/var/lib/rabbitmq
+    <<: *env-files
+{% endif %}
+
+volumes:
+  {{cookiecutter.app_name}}-db:
+    driver: local
+  {{cookiecutter.app_name}}-redis:
+    driver: local
+  {{cookiecutter.app_name}}-static:
+    driver: local
+{% if cookiecutter.use_celery == 'y' %}
+  {{cookiecutter.app_name}}-rabbit:
+    driver: local
+{% endif %}

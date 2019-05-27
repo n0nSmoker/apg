@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "data": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "data"
+    ]
+}

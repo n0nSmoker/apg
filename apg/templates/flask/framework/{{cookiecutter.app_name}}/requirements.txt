@@ -1,0 +1,39 @@
+Flask==1.0.2
+SQLAlchemy==1.2.9
+SQLAlchemy-serializer==1.1
+Flask-SQLAlchemy==2.3.2
+Flask-Migrate==2.2.1
+furl==1.2.1
+requests==2.20.0
+raven==6.9.0
+blinker==1.4  # For raven ONLY
+psycopg2==2.7.5
+pprintpp==0.4.0
+pgcli==2.0.2
+redis==2.10.6
+gunicorn==19.9.0
+webargs==5.1.0
+apispec==0.39.0
+ipython==7.2.0
+cookiecutter==1.6.0
+Pillow==5.2.0
+marshmallow==2.15.5
+Werkzeug==0.14.1
+{% if cookiecutter.use_mail == 'y' -%}
+Flask-Mail==0.9.1
+{% endif -%}
+{% if cookiecutter.use_celery == 'y' -%}
+celery==4.2.0
+{% endif %}
+{% if cookiecutter.use_jwt_authorization == 'y' -%}
+#auth requirements
+bcrypt==3.1.4
+PyJWT==1.7.1
+{% endif %}
+
+# test requirements
+pytest==3.6.3
+pytest-cov==2.5.1
+pylama==7.6.6
+pylint==2.2.2
+mccabe==0.6.1

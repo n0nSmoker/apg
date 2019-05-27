@@ -1,0 +1,13 @@
+/* SCROLL STYLING FOR WEBKIT BASED BROWSERS */
+::-webkit-scrollbar {
+  width: 7px;  /* for vertical scrollbars */
+  height: 7px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track {
+  background: #f6c164;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #000;
+}

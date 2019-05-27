@@ -1,0 +1,16 @@
+.idea
+.virtualenv
+ghostdriver.log
+*.pyc
+node_modules/
+__MACOSX
+.DS_Store
+npm-debug.log
+*.egg-info
+tests/.cache
+__pycache__
+.cache
+*.retry
+.coverage
+.vscode
+.env

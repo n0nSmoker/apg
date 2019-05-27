@@ -1,0 +1,17 @@
+{
+    "app_name": "short_app_name_in_lover_case",
+    "full_app_name": "Awesome application",
+    "use_mail": "n",
+    "use_celery": "n",
+    "use_jwt_authorization": "y",
+    "description": "Some useful description",
+    "version": "0.0.1",
+    "_copy_without_render": [
+        "*.html",
+        "*.css",
+        "*.js",
+        "*.map",
+        "lib/swagger/static",
+        "lib/swagger/templates"
+    ]
+}

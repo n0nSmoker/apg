@@ -1,0 +1,22 @@
+version: '3.5'
+x-environment: &environment
+  environment:
+{%- if cookiecutter.use_database == 'y' %}
+    - POSTGRES_DB = test_{{cookiecutter.app_name}}
+{%- endif %}
+    - TEST_FILE=${TEST_FILE}
+
+services:
+  {{cookiecutter.app_name}}:
+    command:
+      - run_tests
+{%- if cookiecutter.use_database == 'y' %}
+    depends_on:
+      - {{cookiecutter.app_name|lower}}-db
+{%- endif %}
+    restart: "no"
+    <<: *environment
+{% if cookiecutter.use_database == 'y' %}
+  {{cookiecutter.app_name}}-db:
+    <<: *environment
+{% endif %}
