@@ -1,0 +1,9 @@
+{
+  "app_name": "short_app_name_in_lower_case",
+  "license": "ISC",
+  "version": "0.1.0",
+  "description": "Some useful description",
+  "is_standalone": "y",
+  "dist_relative_path": "dist",
+  "dist_public_path": ""
+}
