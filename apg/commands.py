@@ -14,7 +14,7 @@ app_dir = os.path.join(work_dir, 'app')
 
 templates_dir = os.path.join(package_dir, 'templates')
 
-FRAMEWORKS = ('flask', 'aiohttp')
+FRAMEWORKS = ('flask', 'aiohttp', 'react')
 
 INFO_FILE_NAME = '.info'
 
