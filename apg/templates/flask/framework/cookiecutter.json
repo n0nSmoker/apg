@@ -1,5 +1,5 @@
 {
-    "app_name": "short_app_name_in_lover_case",
+    "app_name": "short_app_name_in_lower_case",
     "full_app_name": "Awesome application",
     "use_mail": "n",
     "use_celery": "n",
