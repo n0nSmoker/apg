@@ -7,28 +7,38 @@ Code generation tool, which helps you to start a project without pain
  - docker-compose
  - cookiecutter
  - Click
+
+for react projects
+   - npm 
 ## Installation
 ```
 pip install apg
 ```
 
 ## Usage
-Create new project in current directory (flask/aiohttp/ReactJS)
+Create new project in current directory
+
+Choose one of available framework
+   - flask
+   - aiohttp
+   - react
+
 ```bash
 $ apg init <framework_name>
 ```
 Add new module to the current project (in current directory)
+> only available at flask and aiohttp
 ```bash
 $ apg module <name>
 ```
 
 
-# Run on local machine
+### Run on local machine
 ```bash
 $ make dev # Flask and aiohttp
 ```
 
-# Bash commands
+### Bash commands
 Flask project:
 ```bash
 $ make dev # build application containers and run in developer mode
@@ -52,7 +62,12 @@ $ make migrate # create data migration for database
 $ make upgrade # apply data migrations to database
 $ make test # run autotests 
 ```
-# Tests
+React project:
+```bash
+$ npm start:dev # in standalone project start dev-server, otherwise compile project in dist folder and start watching it
+$ npm build:prod # build production
+```
+### Tests
 To run tests and see tests coverage report just type the following command
 
 Flask and Aiohttp:
@@ -62,7 +77,7 @@ $ make test file=<folder_name> # to run all test files in folder
 $ make test file=<folder_name>/<file_name> # to run all tests in single file
 $ make test file=<folder_name>/<file_name>::<test_case_name> # to run sinle test case
 ```
-# Documentation
+### Documentation
 After you started the project all documentation will be available is Swagger format
 
 - Flask - http://127.0.0.1:5000/api/doc/
