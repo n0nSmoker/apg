@@ -1,6 +1,12 @@
 # APG
 Code generation tool, which helps you to start a project without pain
 
+## Dependencies
+ - make
+ - docker
+ - docker-compose
+ - cookiecutter
+ - Click
 ## Installation
 ```
 pip install apg
@@ -19,15 +25,43 @@ $ apg module <name>
 
 # Run on local machine
 ```bash
-$ make dev
+$ make dev # Flask and aiohttp
 ```
 
+# Bash commands
+Flask project:
+```bash
+$ make dev # build application containers and run in developer mode
+$ make build # build application containers
+$ make up # run application in prodaction mode
+$ make stop # stop application and running containers
+$ make db # initialize database
+$ make migrate # create data migration for database
+$ make bash # run bash shell inside application container
+$ make shell # run pimped out python console
+$ make dbshell # run databse console
+$ make test # run autotests
+``` 
+Aiohttp project:
+```bash
+$ make dev # build application containers and run in developer mode
+$ make shell # run pimped out python console
+$ make check # check apispec
+$ make dbshell # run database console
+$ make migrate # create data migration for database
+$ make upgrade # apply data migrations to database
+$ make test # run autotests 
+```
 # Tests
 To run tests and see tests coverage report just type the following command
-```
-make test
-```
 
+Flask and Aiohttp:
+```bash
+$ make test # to test all project files
+$ make test file=<folder_name> # to run all test files in folder
+$ make test file=<folder_name>/<file_name> # to run all tests in single file
+$ make test file=<folder_name>/<file_name>::<test_case_name> # to run sinle test case
+```
 # Documentation
 After you started the project all documentation will be available is Swagger format
 
