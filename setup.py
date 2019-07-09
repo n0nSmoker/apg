@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='apg',
-    version='0.3',
+    version='0.3.1',
     description='Awesome project generation tool',
     author='Y-Bro',
     url='https://github.com/n0nSmoker/apg',
