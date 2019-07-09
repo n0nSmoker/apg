@@ -3,12 +3,12 @@ from setuptools import setup
 
 setup(
     name='apg',
-    version='0.3.1',
+    version='0.3.2',
     description='Awesome project generation tool',
     author='Y-Bro',
     url='https://github.com/n0nSmoker/apg',
     keywords=['apg', 'generate project', 'framework', 'cookie-cutter'],
-    packages=['apg'],
+    packages=['apg.apg'],
     py_modules=['apg'],
     install_requires=[
         'Click',
