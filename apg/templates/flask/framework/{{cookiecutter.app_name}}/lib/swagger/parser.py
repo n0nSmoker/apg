@@ -55,6 +55,8 @@ def field2parameter(field: fields.Field, name: str, default_location: str = 'que
         location = 'header'
     elif location == 'match_info':
         location = 'path'
+    elif location in ('files', 'form'):
+        location = 'formData'
 
     parameter = {
         'in': location,
