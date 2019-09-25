@@ -26,12 +26,14 @@ def init_db(app):
     db.init_app(app)
     return db
 
+
 {% if cookiecutter.use_mail == 'y' -%}
 def init_mail(app):
     mail = Mail()
     mail.init_app(app)
     app.mail = mail
 {% endif -%}
+
 
 def init_config(app, config):
     """
