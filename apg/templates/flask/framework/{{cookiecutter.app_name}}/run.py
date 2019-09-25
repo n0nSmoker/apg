@@ -115,5 +115,6 @@ def addadmin():
     logging.info('Administrator user with - username: %s; Successfully created', username)
 {% endif -%}
 
+
 if __name__ == '__main__':
     app.run()
