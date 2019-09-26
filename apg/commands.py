@@ -19,7 +19,7 @@ FRAMEWORKS = ('flask', 'aiohttp', 'react')
 INFO_FILE_NAME = '.info'
 
 
-def _add_info_file(project_name, **kwargs):
+def add_info_file(project_name, **kwargs):
     path = os.path.join(work_dir, project_name, INFO_FILE_NAME)
     with open(path, mode='w+') as stream:
         try:
@@ -135,13 +135,13 @@ def new_project(name, framework):
     )
 
     framework_dir = _get_framework_dir(framework)
+    add_info_file(project_name=name, framework=framework, version='{{cookiecutter.version}}')
     cookiecutter(
         template=framework_dir,
         output_dir=work_dir,
         extra_context=context,
         no_input=True
     )
-    _add_info_file(project_name=name, framework=framework, version='{{cookiecutter.version}}')
     click.echo(
         f'Project name:{name} framework:{framework} is created in {work_dir}'
     )
