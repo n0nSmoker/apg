@@ -135,13 +135,13 @@ def new_project(name, framework):
     )
 
     framework_dir = _get_framework_dir(framework)
-    add_info_file(project_name=name, framework=framework, version='{{cookiecutter.version}}')
     cookiecutter(
         template=framework_dir,
         output_dir=work_dir,
         extra_context=context,
         no_input=True
     )
+    add_info_file(project_name=name, framework=framework, version=context['version'])
     click.echo(
         f'Project name:{name} framework:{framework} is created in {work_dir}'
     )
