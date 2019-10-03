@@ -57,6 +57,7 @@ AUTH_PARAM = {
 
 TYPES_MAP = {
     int: {'type': 'integer'},
+    float: {'type': 'number'},
     str: {'type': 'string'},
     time: {
         'type': 'string',
