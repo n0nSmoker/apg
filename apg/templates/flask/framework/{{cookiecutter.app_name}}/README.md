@@ -23,6 +23,7 @@ List of available commads:
 - `stop` stop application and all its containers
 - `db` initialize application database
 - `migrate` generate database migration file
+- `upgrade` apply latest database migration files
 - `bash` open bash shell inside app container
 - `shell` run ipython shell inside app container
 - `dbshell` run pimped out database shell inside db container

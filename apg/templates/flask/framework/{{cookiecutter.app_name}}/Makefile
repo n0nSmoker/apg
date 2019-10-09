@@ -20,6 +20,9 @@ stop:
 migrate:
 	$(COMPOSE-DEV) exec {{cookiecutter.app_name}} flask db migrate
 
+upgrade:
+	$(COMPOSE-DEV) exec api flask db upgrade
+
 shell:
 	$(COMPOSE-DEV) exec {{cookiecutter.app_name}} flask debug
 
