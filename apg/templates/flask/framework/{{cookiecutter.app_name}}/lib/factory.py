@@ -11,13 +11,14 @@ from sqlalchemy import create_engine
 {% if cookiecutter.use_mail == 'y' -%}
 from flask_mail import Mail
 {% endif -%}
+from lib.db import Query
 
 
 logger = logging.getLogger('factory')
 logger.setLevel(logging.INFO)
 
 
-db = SQLAlchemy()
+db = SQLAlchemy(query_class=Query)
 
 
 def init_db(app):

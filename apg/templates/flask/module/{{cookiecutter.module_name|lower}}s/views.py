@@ -18,11 +18,6 @@ def list_view(page, limit, sort_by):
     q = {{cookiecutter.module_name|capitalize}}.query
     total = q.count()
 
-    if sort_by.startswith('-'):
-        sort_by = getattr({{cookiecutter.module_name|capitalize}}, sort_by[1:]).desc()
-    else:
-        sort_by = getattr({{cookiecutter.module_name|capitalize}}, sort_by)
-
     q = q.order_by(sort_by).offset((page - 1) * limit).limit(limit)
     return success(
         results=[{{cookiecutter.module_name|lower}}.to_dict() for {{cookiecutter.module_name|lower}} in q],
