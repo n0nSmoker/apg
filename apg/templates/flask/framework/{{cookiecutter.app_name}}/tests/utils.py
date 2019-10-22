@@ -1,8 +1,16 @@
 from contextlib import contextmanager
 import json
+import functools
+import logging
 
 from flask import url_for
 import pytest
+
+from lib.factory import db
+from flask_sqlalchemy import Model
+
+
+logger = logging.getLogger('{{cookiecutter.app_name}}')
 
 
 @contextmanager
@@ -68,3 +76,44 @@ class Client:
 
 class ClientException(Exception):
     pass
+
+
+def db_func_fixture(**kwargs):
+    """
+    Decorates fixture function which should return a function
+    which in turn should create and return single or a list of
+    db.Model instances
+    :param kwargs: any params for pytest.fixture function
+    :return:
+    """
+    def fixture_decorator(func):
+        func = pytest.fixture(**kwargs)(func)
+
+        @functools.wraps(func)
+        def wrapped_fixture(*a, **kw):
+            instances = []
+
+            def func_decorator(f):
+                @functools.wraps(f)
+                def decorated_func(*a, **kw):
+                    resp = f(*a, **kw)
+                    err_msg = f'Function {func.__name__}->{f.__name__} should return db.Model instance(s)'
+                    for instance in [resp] if not isinstance(resp, list) else resp:
+                        assert issubclass(instance.__class__, Model), err_msg
+                        instances.append(instance)
+                    return resp
+
+                return decorated_func
+
+            yield func_decorator(func(*a, **kw))
+
+            types = set()
+            for i in instances:
+                db.session.delete(i)
+                types.add(i.__class__)
+                logger.info('Deleted instance id:%s type:%s', i.id, i.__class__)
+            db.session.commit()
+
+        return wrapped_fixture
+    return fixture_decorator
+
