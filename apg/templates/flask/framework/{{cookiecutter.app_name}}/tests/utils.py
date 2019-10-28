@@ -36,7 +36,7 @@ class Client:
     @staticmethod
     def _get_data(resp, check_status=None):
         if check_status:
-            assert resp.status_code == check_status
+            assert resp.status_code == check_status, resp.data
         data = resp.data
         if resp.content_type == 'application/json':
             data = json.loads(resp.data)
