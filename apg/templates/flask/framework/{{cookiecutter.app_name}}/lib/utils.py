@@ -48,12 +48,12 @@ def find_models_and_tables():
     return models_dict
 
 
-def setattrs(obj, **kwargs):
+def setattrs(obj, ignore_nulls=False, **kwargs):
     """ Setting multiple object attributes at once """
 
     attrs = (a for a in dir(obj) if not a.startswith('_'))
     for attr in attrs:
-        if attr in kwargs:
+        if attr in kwargs and (kwargs[attr] is not None and ignore_nulls or not ignore_nulls):
             setattr(obj, attr, kwargs[attr])
 
 
