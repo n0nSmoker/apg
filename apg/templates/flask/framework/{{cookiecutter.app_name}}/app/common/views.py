@@ -6,7 +6,7 @@ from app.users.models import User
 from lib.auth import get_access_token, verify_password
 from lib.swagger import use_kwargs
 from lib.utils import fail, success
-{% endif %}
+{% endif -%}
 
 mod = Blueprint('common', __name__)
 
@@ -14,8 +14,8 @@ mod = Blueprint('common', __name__)
 @mod.route('/')
 def root_view():
     return 'Main page'
-    
-    
+
+
 @mod.route('/heartbeat/')
 def heartbeat_view():
     """Service availability check
@@ -50,4 +50,4 @@ def login_view(login, password):
 
     resp = {'access_token': get_access_token(user_id=user.id)}
     return success(resp)
-{% endif %}
+{% endif -%}
