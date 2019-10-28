@@ -51,4 +51,4 @@ login_view = dict(
         )
     }
 )
-{% endif %}
+{% endif -%}
