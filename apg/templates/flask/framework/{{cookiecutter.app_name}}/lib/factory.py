@@ -93,11 +93,18 @@ def init_app(app, config='config.py'):
     """
     if config:
         init_config(app, config=config)
+        
     app.db = init_db(app)
+    app.cache = init_cache(app)
+    
     register_blueprints(app)
     init_sentry(app)
     init_migrations(app)
     return app
+
+
+def init_cache(app):
+    return redis.Redis(host=app.config['REDIS_HOST'], port=app.config['REDIS_PORT'])
 
 
 def create_db(dsn):
