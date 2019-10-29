@@ -7,7 +7,7 @@ from lib.swagger import use_kwargs
 from lib.utils import setattrs, success
 
 from .models import {{cookiecutter.module_name|capitalize}}
-import app.{{cookiecutter.module_name|lower}}s.schemas as schemas
+from . import schemas
 
 mod = Blueprint('{{cookiecutter.module_name|lower}}s', __name__, url_prefix='/{{cookiecutter.module_name|lower}}s')
 
