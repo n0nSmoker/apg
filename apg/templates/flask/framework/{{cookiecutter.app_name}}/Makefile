@@ -1,4 +1,4 @@
-.PHONY: dev build up migrate shell dbshell redis-cli test
+.PHONY: dev build up stop migrate upgrade shell bash dbshell redis-cli test db
 
 COMPOSE-DEV = docker-compose -f docker-compose.yml -f docker-compose.dev.yml
 COMPOSE-TEST = docker-compose -f docker-compose.yml -f docker-compose.test.yml
