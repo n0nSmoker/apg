@@ -55,7 +55,7 @@ def drop_all():
 
 @app.cli.command()
 def debug():
-    """Runs the shell with own context and ipython"""
+    """Runs shell with own context and ipython"""
     import re  # noqa
     import os  # noqa
     from pprintpp import pprint as p  # noqa
