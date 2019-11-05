@@ -1,5 +1,7 @@
 .PHONY: dev build up stop migrate upgrade shell bash dbshell redis-cli test db
 
+
+COMPOSE-PROD = docker-compose -f docker-compose.yml
 COMPOSE-DEV = docker-compose -f docker-compose.yml -f docker-compose.dev.yml
 COMPOSE-TEST = docker-compose -f docker-compose.yml -f docker-compose.test.yml
 FILE = $(file)
@@ -12,7 +14,7 @@ build:
 	$(COMPOSE-DEV) build
 
 up:
-	$(COMPOSE-DEV) up
+	$(COMPOSE-PROD) up
 
 stop:
 	$(COMPOSE-DEV) down
