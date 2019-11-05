@@ -64,7 +64,7 @@ def debug():
     shell_context = locals()
     shell_context.update(find_models_and_tables())
 
-    embed(user_ns=shell_context)
+    embed(user_ns=shell_context, using=None)
 
 
 @app.cli.command()
