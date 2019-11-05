@@ -16,7 +16,7 @@ $ make <command>
 ```
 > May ask superuser rights (for docker)
 
-List of available commads:
+List of available commands:
 - `dev`  build application containers and run dev server (runs all new db migrations)
 - `build` build application containers
 - `up` run application in production mode
