@@ -17,7 +17,7 @@ $ make <command>
 > May ask superuser rights (for docker)
 
 List of available commads:
-- `dev`  build application containers and run with dev server (runs all new db migrations)
+- `dev`  build application containers and run dev server (runs all new db migrations)
 - `build` build application containers
 - `up` run application in production mode
 - `stop` stop application and all its containers
@@ -28,7 +28,7 @@ List of available commads:
 - `shell` run ipython shell inside app container
 - `dbshell` run pimped out database shell inside db container
 - `redis-cli` run redis shell in redis container
-- `test` run tests all tests
+- `test` run all tests
 - `test file=path/to/tests.py::some_test` run separate dir/module/test
 
 
