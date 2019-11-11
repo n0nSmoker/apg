@@ -57,10 +57,20 @@ def setattrs(obj, ignore_nulls=False, **kwargs):
             setattr(obj, attr, kwargs[attr])
 
 
-def success(prepared_obj=None, **kwargs):
-    resp = prepared_obj if prepared_obj is not None else kwargs
+def success(data, headers=None, cookies=None):
     status = 200
-    return jsonify(data=dict(**resp)), status
+    resp = make_response(jsonify(data), status)
+    if cookies:
+        assert isinstance(cookies, dict), 'Cookies should be a dict'
+        for n, v in cookies.items():
+            resp.set_cookie(name=n, value=v)
+
+    if headers:
+        assert isinstance(cookies, dict), 'Headers should be a dict'
+        for h, v in headers.items():
+            resp.headers[h] = v
+            
+    return resp
 
 
 def fail(*, title=None, detail=None, status=400):
