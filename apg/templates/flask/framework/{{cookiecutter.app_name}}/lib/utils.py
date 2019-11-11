@@ -63,7 +63,7 @@ def success(data, headers=None, cookies=None):
     if cookies:
         assert isinstance(cookies, dict), 'Cookies should be a dict'
         for n, v in cookies.items():
-            resp.set_cookie(name=n, value=v)
+            resp.set_cookie(key=n, value=v)
 
     if headers:
         assert isinstance(cookies, dict), 'Headers should be a dict'
