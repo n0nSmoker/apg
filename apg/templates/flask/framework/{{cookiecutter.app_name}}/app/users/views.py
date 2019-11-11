@@ -27,7 +27,7 @@ def current_user_view():
     Get current user
     :return: user instance
     """
-    return success(**current_user.to_dict())
+    return success(current_user.to_dict())
 
 
 @mod.route('/')
@@ -47,10 +47,10 @@ def list_view(page, limit, sort_by):
     total = q.count()
 
     q = q.order_by(sort_by).offset((page - 1) * limit).limit(limit)
-    return success(
+    return success(dict(
         results=[user.to_dict() for user in q],
         total=total
-    )
+    ))
 
 
 @mod.route('/<int:user_id>/')
@@ -62,7 +62,7 @@ def user_by_id_view(user_id):
     :return: user instance
     """
     user = User.query.get_or_404(user_id)
-    return success(**user.to_dict())
+    return success(user.to_dict())
 
 
 @mod.route('/', methods=['POST'])
@@ -80,7 +80,7 @@ def add_user_view(**kwargs):
     db.session.add(user)
     db.session.commit()
 
-    return success(**user.to_dict())
+    return success(user.to_dict())
 
 
 @mod.route('/<int:user_id>/', methods=['PUT'])
@@ -109,7 +109,7 @@ def update_user_view(user_id, **kwargs):
     user.updated_at = datetime.utcnow()
     db.session.commit()
 
-    return success(**user.to_dict())
+    return success(user.to_dict())
 
 
 @mod.route('/<int:user_id>/', methods=['DELETE'])
@@ -124,4 +124,4 @@ def delete_user_view(user_id):
     resp = user.to_dict()
     db.session.delete(user)
     db.session.commit()
-    return success(**resp)
+    return success(resp)
