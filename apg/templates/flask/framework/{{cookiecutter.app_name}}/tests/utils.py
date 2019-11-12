@@ -76,7 +76,7 @@ class Client:
             # Check key's presence and value
             else:
                 assert key in cookies
-                assert value == cookies[key]
+                assert value == cookies[key].value
     
     def get_cookies(self):
         """
