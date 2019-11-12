@@ -55,28 +55,35 @@ class Client:
                 assert current_vals
                 assert any([v == value for v in current_vals])
 
-    @staticmethod
-    def _check_cookies(headers, to_check):
+    
+    def _check_cookies(self, to_check):
         """
         Checks response cookies
-        :param werkzeug.datastructures.Headers headers:
         :param dict to_check:
         :return:
         """
         assert isinstance(to_check, dict)
-        vals = headers.get_all('Set-Cookie')
+        cookies = self.get_cookies()
         for key, value in to_check.items():
             # Check if cookie is NOT presented
             if not value:
-                assert not any([v.startswith(f'{key}=') for v in vals])
+                assert key not in cookies
 
             # Check only the presence of the header
             elif value is True:
-                assert any([v.startswith(f'{key}=') for v in vals])
+                assert key in cookies
 
             # Check key's presence and value
             else:
-                assert any([v.startswith(f'{key}={value};') for v in vals])
+                assert key in cookies
+                assert value == cookies[key]
+    
+    def get_cookies(self):
+        """
+        Returns cookies as a dict
+        :return: dict
+        """
+        return {c.name: c for c in self.app.client.cookie_jar}
 
     def send(self, endpoint, method, data=None, content_type=None, headers=None,
              check_status=200, check_headers=None, check_cookies=None, **values):
@@ -110,7 +117,7 @@ class Client:
             assert resp.status_code == check_status, resp.data.decode('utf-8')
 
         if check_cookies:
-            self._check_cookies(headers=resp.headers, to_check=check_cookies)
+            self._check_cookies(to_check=check_cookies)
 
         if check_headers:
             self._check_headers(headers=resp.headers, to_check=check_headers)
